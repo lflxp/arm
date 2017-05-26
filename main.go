@@ -1,8 +1,8 @@
 package main
 
 import (
-	//. "github.com/lflxp/arm/net/UDPClient"
-	. "github.com/lflxp/arm/net/UDPServer"
+	//. "github.com/lflxp/arm/udp/UDPClient"
+	. "github.com/lflxp/arm/udp/UDPServer"
 )
 
 func main() {
