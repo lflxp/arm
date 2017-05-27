@@ -9,6 +9,7 @@ import (
 	. "github.com/lflxp/arm/utils"
 	"fmt"
 	"time"
+	"github.com/lflxp/arm/udp"
 )
 
 type UDPClient interface {
@@ -54,7 +55,7 @@ func (this *Broadcast) Close() error {
 	return nil
 }
 
-func (this *Broadcast) Discover() {
+func (this *Broadcast) Discover(packet udp.Packet) {
 
 
 	daytime := time.Now().String()
