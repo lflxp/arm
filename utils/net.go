@@ -37,6 +37,7 @@ func (this *Local) GetIps() []string {
 func (this *Local) GiveOneIp() (string,error) {
 	rs := this.GetIps()
 	for _,data := range rs {
+		println(data)
 		if strings.Contains(data,"24") {
 			return strings.Split(data,"/")[0],nil
 		}

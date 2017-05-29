@@ -8,7 +8,7 @@ import (
 	"net"
 	. "github.com/lflxp/arm/utils"
 	"fmt"
-	"time"
+	//"time"
 	"github.com/lflxp/arm/udp"
 )
 
@@ -58,14 +58,15 @@ func (this *Broadcast) Close() error {
 func (this *Broadcast) Discover(packet udp.Packet) {
 
 
-	daytime := time.Now().String()
-	this.Conn.Write([]byte(daytime))
+	//daytime := time.Now().String()
+	//this.Conn.Write([]byte(daytime))
+	this.Conn.Write(packet)
 }
 
 //配置广播包地址255.255.255.255
 func (this *Broadcast) SetRemteAddr() {
 	this.Raddr = net.UDPAddr{
-		IP:net.IPv4(255,255,255,255),
+		IP:net.IPv4bcast,
 		Port:this.Port,
 	}
 	//raddr,err := udp.ResolveUDPAddr("udp","255.255.255.255:"+strconv.Itoa(this.Port))
@@ -74,10 +75,10 @@ func (this *Broadcast) SetRemteAddr() {
 }
 //配置发送端地址
 func (this *Broadcast) SetLocalAddr() {
-	var local Local
-	ip,err := local.GiveOneIp()
-	CheckError(err)
-	laddr,err := net.ResolveUDPAddr(this.Net,fmt.Sprintf("%s:%d",ip,RandInt(10000,19877)))
+	//var local Local
+	//ip,err := local.GiveOneIp()
+	//CheckError(err)
+	laddr,err := net.ResolveUDPAddr(this.Net,fmt.Sprintf("%s:%d","192.168.1.102",RandInt(10000,19877)))
 	CheckError(err)
 	this.Laddr = *laddr
 }
